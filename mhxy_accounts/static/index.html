@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#241c16">
+  <title>梦幻西游手游 · 账号数据</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="mark" aria-hidden="true">记</span>
+        <div>
+          <p class="eyebrow">梦幻西游手游</p>
+          <h1>账号数据</h1>
+        </div>
+      </div>
+      <nav>
+        <button type="button" data-action="nav" data-view="overview" class="active">总览</button>
+        <button type="button" data-action="nav" data-view="accounts">账号</button>
+        <button type="button" data-action="nav" data-view="records">记录</button>
+      </nav>
+      <p class="side-note">只记角色和资产。不要填写登录账号或密码。数据留在本机。</p>
+    </aside>
+    <main id="view"><p class="loading">正在读取记录…</p></main>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <dialog id="account-dialog">
+    <form id="account-form">
+      <h2 id="account-dialog-title">添加账号</h2>
+      <p class="hint">称呼是你自己认的名字，不是游戏登录账号。</p>
+      <input type="hidden" name="id" value="">
+      <label>称呼<input name="label" required maxlength="40" autocomplete="off"></label>
+      <label>服务器<input name="server" required maxlength="40" autocomplete="off"></label>
+      <label>渠道<input name="channel" maxlength="32" placeholder="官方、iOS、安卓，可留空" autocomplete="off"></label>
+      <label>状态
+        <select name="status">
+          <option>正常</option>
+          <option>停用</option>
+          <option>异常</option>
+        </select>
+      </label>
+      <label>备注<textarea name="notes" maxlength="500" rows="3"></textarea></label>
+      <menu>
+        <button type="button" data-action="close-dialog">取消</button>
+        <button type="submit">保存</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="character-dialog">
+    <form id="character-form">
+      <h2 id="character-dialog-title">添加角色</h2>
+      <input type="hidden" name="id" value="">
+      <label>所属账号
+        <select name="account_id" required></select>
+      </label>
+      <label>角色名<input name="name" required maxlength="20" autocomplete="off"></label>
+      <label>门派<input name="school" maxlength="16" list="schools" autocomplete="off"></label>
+      <label>造型<input name="appearance" maxlength="16" list="appearances" autocomplete="off"></label>
+      <label>等级<input name="level" type="number" min="0" max="200" value="1" required></label>
+      <label>备注<textarea name="notes" maxlength="500" rows="3"></textarea></label>
+      <menu>
+        <button type="button" data-action="close-dialog">取消</button>
+        <button type="submit">保存</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="snapshot-dialog">
+    <form id="snapshot-form">
+      <h2 id="snapshot-dialog-title">记一笔</h2>
+      <p class="hint">时间按北京时间保存。</p>
+      <input type="hidden" name="id" value="">
+      <label>角色
+        <select name="character_id" required></select>
+      </label>
+      <label>时间<input name="recorded_at" type="datetime-local" required></label>
+      <div class="grid-3">
+        <label>金币<input name="gold" type="number" min="0" step="1" value="0"></label>
+        <label>银币<input name="silver" type="number" min="0" step="1" value="0"></label>
+        <label>仙玉<input name="jade" type="number" min="0" step="1" value="0"></label>
+        <label>人物评分<input name="char_score" type="number" min="0" step="1" value="0"></label>
+        <label>装备评分<input name="equip_score" type="number" min="0" step="1" value="0"></label>
+        <label>召唤灵评分<input name="pet_score" type="number" min="0" step="1" value="0"></label>
+      </div>
+      <label>备注<textarea name="notes" maxlength="500" rows="2"></textarea></label>
+      <menu>
+        <button type="button" data-action="close-dialog">取消</button>
+        <button type="submit">保存</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <datalist id="schools">
+    <option value="大唐官府"></option>
+    <option value="方寸山"></option>
+    <option value="龙宫"></option>
+    <option value="普陀山"></option>
+    <option value="阴曹地府"></option>
+    <option value="狮驼岭"></option>
+    <option value="魔王寨"></option>
+    <option value="化生寺"></option>
+    <option value="月宫"></option>
+    <option value="女儿村"></option>
+    <option value="小雷音"></option>
+    <option value="花果山"></option>
+    <option value="须弥海"></option>
+    <option value="盘丝洞"></option>
+  </datalist>
+  <datalist id="appearances">
+    <option value="剑侠客"></option>
+    <option value="逍遥生"></option>
+    <option value="龙太子"></option>
+    <option value="神天兵"></option>
+    <option value="巨魔王"></option>
+    <option value="虎头怪"></option>
+    <option value="杀破狼"></option>
+    <option value="巫蛮儿"></option>
+    <option value="英女侠"></option>
+    <option value="飞燕女"></option>
+    <option value="骨精灵"></option>
+    <option value="狐美人"></option>
+    <option value="玄彩娥"></option>
+    <option value="梦灵珑"></option>
+  </datalist>
+  <input id="import-file" type="file" accept="application/json,.json" hidden>
+  <script src="/static/app.js"></script>
+</body>
+</html>
