@@ -80,7 +80,10 @@ function showToast(message) {
   }, 3200);
 }
 
+let backend = "http";
+
 async function api(path, options = {}) {
+  if (backend === "browser") return globalThis.mhxyBrowserApi(path, options);
   const response = await fetch(path, {
     headers: { "Content-Type": "application/json" },
     ...options,
@@ -88,6 +91,23 @@ async function api(path, options = {}) {
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(payload.error || "请求失败");
   return payload;
+}
+
+async function chooseBackend() {
+  try {
+    const response = await fetch("/api/health", { cache: "no-store" });
+    if (response.ok) {
+      backend = "http";
+      return;
+    }
+  } catch (error) {
+    // GitHub Pages has no Python service, so the ledger stays in this browser.
+  }
+  backend = "browser";
+  const note = document.querySelector("#storage-note");
+  if (note) {
+    note.textContent = "只记角色和资产。不要填写登录账号或密码。数据留在这台浏览器里，换设备前请导出备份。";
+  }
 }
 
 function setPage(page) {
@@ -494,6 +514,6 @@ document.querySelector("#import-file").addEventListener("change", async (event) 
 });
 
 setPage(state.page);
-load().catch((error) => {
+chooseBackend().then(() => load()).catch((error) => {
   view.innerHTML = `<p class="empty">${esc(error.message)}</p>`;
 });

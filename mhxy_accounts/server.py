@@ -32,7 +32,12 @@ from mhxy_accounts.db import (
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 STATIC_FILES = {
     "/": ("index.html", "text/html; charset=utf-8"),
+    "/index.html": ("index.html", "text/html; charset=utf-8"),
+    "/app.js": ("app.js", "text/javascript; charset=utf-8"),
+    "/store.js": ("store.js", "text/javascript; charset=utf-8"),
+    "/styles.css": ("styles.css", "text/css; charset=utf-8"),
     "/static/app.js": ("app.js", "text/javascript; charset=utf-8"),
+    "/static/store.js": ("store.js", "text/javascript; charset=utf-8"),
     "/static/styles.css": ("styles.css", "text/css; charset=utf-8"),
 }
 MAX_BODY = 1_000_000

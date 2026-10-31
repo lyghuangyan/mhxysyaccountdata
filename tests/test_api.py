@@ -54,10 +54,15 @@ class ApiTest(unittest.TestCase):
         with urllib.request.urlopen(self.base + "/") as res:
             html = res.read().decode()
         self.assertIn("不要填写登录账号或密码", html)
-        with urllib.request.urlopen(self.base + "/static/app.js") as res:
+        self.assertIn('href="styles.css"', html)
+        self.assertIn('src="store.js"', html)
+        self.assertIn('src="app.js"', html)
+        with urllib.request.urlopen(self.base + "/app.js") as res:
             script = res.read().decode()
         self.assertIn("记一笔", script)
         self.assertIn('getAttribute("id")', script)
+        with urllib.request.urlopen(self.base + "/store.js") as res:
+            self.assertIn("mhxyBrowserApi", res.read().decode())
         self.assertEqual(self.request("GET", "/api/health"), {"ok": True})
 
     def test_rejects_blank_account_and_password_is_not_a_field(self):
