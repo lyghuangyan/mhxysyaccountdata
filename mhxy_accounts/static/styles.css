@@ -1,0 +1,275 @@
+:root {
+  --ink: #241c16;
+  --ink-soft: #3a2e24;
+  --paper: #f4ecdc;
+  --paper-2: #fffaf1;
+  --line: #e2d3b8;
+  --cinnabar: #9c2f2f;
+  --cinnabar-deep: #742323;
+  --gold: #8d6b32;
+  --moss: #2b6448;
+  --muted: #746656;
+  --shadow: 0 16px 40px rgba(36, 28, 22, 0.08);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(166, 132, 69, 0.18), transparent 32%),
+    var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+button { cursor: pointer; }
+
+.app {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--ink);
+  color: #f6efe4;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.brand { display: flex; gap: 12px; align-items: center; }
+
+.mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(246, 239, 228, 0.4);
+  border-radius: 14px;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: 22px;
+}
+
+.eyebrow {
+  margin: 0;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  color: #d9c7a4;
+}
+
+.brand h1 {
+  margin: 2px 0 0;
+  font-size: 22px;
+  font-weight: 650;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", serif;
+}
+
+.sidebar nav { display: flex; flex-direction: column; gap: 8px; }
+
+.sidebar nav button,
+.ghost,
+.primary,
+menu button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: transparent;
+  text-align: left;
+}
+
+.sidebar nav button { color: #f6efe4; }
+
+.sidebar nav button.active,
+.sidebar nav button:hover { background: rgba(246, 239, 228, 0.1); }
+
+.side-note {
+  margin-top: auto;
+  color: #cbbba6;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+main { padding: 32px; min-width: 0; }
+
+.panel, .card, .page-head, .two, .cards, .toolbar, .account-list, .character-row, .table-wrap {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.page-head, .split, menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.page-head { margin-bottom: 22px; }
+
+h2, h3 { font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", serif; font-weight: 650; }
+
+h2 { margin: 0; font-size: 32px; }
+
+.sub { margin: 6px 0 0; color: var(--muted); }
+
+.cards, .two {
+  display: grid;
+  gap: 16px;
+}
+
+.cards { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 18px; }
+
+.card, .panel, dialog {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.card { padding: 16px 18px; }
+
+.card span, .muted { color: var(--muted); font-size: 13px; }
+
+.card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel { padding: 18px; }
+
+.two { grid-template-columns: 280px 1fr; align-items: start; }
+
+.account-list, .stack { display: flex; flex-direction: column; gap: 10px; }
+
+.account-item, .character-row {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.account-item.active, .character-row { background: #fff; }
+
+.account-item strong, .character-row strong { display: block; }
+
+.meta { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+.primary, menu button[type="submit"] {
+  background: var(--cinnabar);
+  color: #fffaf1;
+}
+
+.primary:hover, menu button[type="submit"]:hover { background: var(--cinnabar-deep); }
+
+.ghost, menu button[type="button"] {
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.danger { color: var(--cinnabar-deep); }
+
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+
+th, td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+
+th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+
+th { color: var(--muted); font-weight: 600; font-size: 13px; }
+
+.up { color: var(--moss); }
+.down { color: var(--cinnabar); }
+.flat { color: var(--muted); }
+
+.empty {
+  padding: 28px 8px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+dialog {
+  width: min(560px, calc(100vw - 32px));
+  padding: 22px;
+  border: 1px solid var(--line);
+}
+
+dialog::backdrop { background: rgba(36, 28, 22, 0.46); }
+
+form { display: flex; flex-direction: column; gap: 12px; }
+
+label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+
+input, select, textarea {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid rgba(156, 47, 47, 0.35);
+  border-color: var(--cinnabar);
+}
+
+.hint { margin: 0; color: var(--muted); font-size: 13px; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+
+menu { margin: 4px 0 0; padding: 0; }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #fffaf1;
+  padding: 12px 16px;
+  border-radius: 999px;
+  max-width: min(520px, calc(100vw - 32px));
+}
+
+.loading { color: var(--muted); }
+
+.table-wrap { overflow-x: auto; }
+
+.badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f3e4c4;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+@media (max-width: 980px) {
+  .app { grid-template-columns: minmax(0, 1fr); align-content: start; }
+  .sidebar { padding: 16px; gap: 14px; }
+  .sidebar nav { flex-direction: row; }
+  .side-note { display: none; }
+  .cards, .two, .grid-3 { grid-template-columns: 1fr 1fr; }
+  main { padding: 18px; }
+  h2 { font-size: 26px; }
+}
+
+@media (max-width: 640px) {
+  .cards, .two, .grid-3, .page-head, .toolbar { grid-template-columns: 1fr; display: grid; }
+  .page-head, .toolbar { align-items: stretch; }
+}
